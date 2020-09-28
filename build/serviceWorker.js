@@ -16,13 +16,3 @@ self.addEventListener("install", (event) => {
     })
   );
 });
-
-this.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((result) => {
-      if (result) {
-        return result;
-      }
-    })
-  );
-});
