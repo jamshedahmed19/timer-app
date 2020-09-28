@@ -1,0 +1,14 @@
+.timer-container {
+	background-color: #f1faee;
+	border: #1d3557;
+	height: auto;
+	width:  50%;
+	color: black;
+}
+
+.timer-button-container{
+	background-color: #f1faee;
+	border: #1d3557;
+	height: auto;
+	width:  50%;
+}
