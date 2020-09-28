@@ -2,7 +2,7 @@ const CACHE_NAME = "verion-0.1";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(cacheData).then((cache) => {
+    caches.open(CACHE_NAME).then((cache) => {
       cache.addAll([
         "./",
         "./index.html",
@@ -13,6 +13,16 @@ self.addEventListener("install", (event) => {
         "./favicon-32x32.png",
         "./android-icon-144x144.png",
       ]);
+    })
+  );
+});
+
+this.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((result) => {
+      if (result) {
+        return result;
+      }
     })
   );
 });
