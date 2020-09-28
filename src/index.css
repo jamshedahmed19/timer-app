@@ -20,7 +20,7 @@ p {
 .timer-container {
   background-color: #f1faee;
   border: 5px solid #e63946;
-  width: 50%;
+  width: 70%;
   -webkit-box-shadow: 15px 10px 2px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 15px 10px 2px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 15px 10px 2px 0px rgba(0, 0, 0, 0.2);
@@ -63,4 +63,24 @@ p {
   border: none;
   cursor: pointer;
   outline: none;
+}
+
+@media screen and (max-width: 600px) {
+
+  .time-display {
+    font-size: 42px;
+    margin: 50px auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  .start-timer,
+  .stop-timer,
+  .reset-timer {
+    padding: 7px;
+    width: 95%;
+    margin: 9px auto;
+    font-size: 12px;
+  }
 }

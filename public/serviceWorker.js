@@ -12,7 +12,21 @@ self.addEventListener("install", (event) => {
         "./browserconfig.xml",
         "./favicon-32x32.png",
         "./android-icon-144x144.png",
+        "/static/js/bundle.js",
+        "/static/js/0.chunk.js",
+        "/static/js/main.chunk.js",
+        "/static/media/logo.5d5d9eef.svg",
       ]);
+    })
+  );
+});
+
+this.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((result) => {
+      if (result) {
+        return result;
+      }
     })
   );
 });
