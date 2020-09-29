@@ -1,7 +1,6 @@
 const CACHE_NAME = "version 0.1";
 const urlsToCache = [
   "index.html",
-  "offline.html",
   "./favicon-32x32.png",
   "./logo192.png",
   "./logo512.png",
