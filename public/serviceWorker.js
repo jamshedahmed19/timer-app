@@ -1,9 +1,7 @@
 const CACHE_NAME = "version 0.1";
 const urlsToCache = [
-  "index.html",
-  "./favicon-32x32.png",
-  "./logo192.png",
-  "./logo512.png",
+  "index.html", 
+  "offline.html"
 ];
 
 const self = this;
@@ -23,7 +21,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then(() => {
-      return fetch(event.request).catch(() => caches.match("index.html"));
+      return fetch(event.request).catch(() => caches.match("offline.html"));
     })
   );
 });
