@@ -1,31 +1,42 @@
-const CACHE_NAME = "verion-0.1";
+const CACHE_NAME = "version 0.1";
+const urlsToCache = [
+  "index.html",
+  "offline.html",
+  "./favicon-32x32.png",
+  "./logo192.png",
+  "./logo512.png",
+];
 
+const self = this;
+
+// Install SW
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      cache.addAll([
-        "./",
-        "./index.html",
-        "./logo192.png",
-        "./logo512.png",
-        "./manifest.json",
-        "./browserconfig.xml",
-        "./favicon-32x32.png",
-        "./android-icon-144x144.png",
-        "/static/js/bundle.js",
-        "/static/js/0.chunk.js",
-        "/static/js/main.chunk.js",
-        "/static/media/logo.5d5d9eef.svg",
-      ]);
+      console.log("Opened cache");
+
+      return cache.addAll(urlsToCache);
     })
   );
 });
 
-this.addEventListener("fetch", (event) => {
+// Listen for requests
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((result) => {
-      if (result) {
-        return result;
+    caches.match(event.request).then(() => {
+      return fetch(event.request).catch(() => caches.match("index.html"));
+    })
+  );
+});
+
+// Activate the SW
+self.addEventListener("fetch", (event) => {
+  const cacheWhitelist = [];
+  cacheWhitelist.push(CACHE_NAME);
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      if (!cacheWhitelist.includes(cacheNames)) {
+        return caches.delete(cacheNames);
       }
     })
   );
